@@ -34,6 +34,10 @@
       shell : ssh-keyscan {{ hash_option | default("")}} {{ inventory_hostname }} >> {{ known_hosts_file }}
       delegate_to : localhost
 
+    - name : Ensure python-apt is installed
+      shell : apt-get install python-apt -y -q
+      sudo: yes
+
     - name : Install ansible on lab host
       apt: name=ansible state=present update_cache=yes cache_valid_time=3600
     
